@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LMS
 
-## Getting Started
+A learning management system built with Next.js, Prisma, and PostgreSQL. Students browse courses, enroll, read lessons, track progress, and take quizzes. Instructors create and manage courses, lessons, and quizzes.
 
-First, run the development server:
+This project is built to maximize learning and produce production-quality software — see `MISSION.md` for the teaching goals and `TEACHING-NOTES.md` for accumulated lessons.
+
+## Stack
+
+- **Next.js 16** (App Router) + React 19 + TypeScript
+- **Tailwind CSS v4** (theme in CSS, no `tailwind.config.*`)
+- **Prisma 7** ORM + **PostgreSQL** (driver adapter `@prisma/adapter-pg`)
+- **Auth.js v5** (email/password, Credentials provider) + `bcryptjs`
+- **Zod** for input validation, **react-markdown** for lesson content
+
+## Package manager
+
+Use **pnpm**. Never npm/yarn.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`postinstall` runs `prisma generate` automatically.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Getting started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Install dependencies: `pnpm install`
+2. Set up `.env` (see `.env.example` if you add one):
+   - `DATABASE_URL` — PostgreSQL connection string
+   - `AUTH_SECRET` — Auth.js signing secret
+   - `AUTH_TRUST_HOST` — set `true` in dev
+3. (Re)create the schema in your DB:
+   ```bash
+   pnpm exec prisma migrate dev
+   ```
+4. Run the dev server:
+   ```bash
+   pnpm dev
+   ```
+   Open http://localhost:3000
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `pnpm dev` — development server
+- `pnpm build` / `pnpm start` — production build / serve
+- `pnpm lint` — ESLint (Next 16 removed `next lint`; do not use it)
+- `pnpm exec tsc --noEmit` — type check (no dedicated script)
+- `pnpm exec prisma migrate dev` — apply schema changes to the DB
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/                  # Routes (file-based routing)
+  page.tsx            # Home / course catalog  (WIP)
+  about/              # About page
+  dashboard/          # Placeholder dashboard
+components/           # React components (dashboard/ etc.)
+lib/
+  prisma.ts           # Shared Prisma client (singleton)
+  actions/            # Server Actions (all mutations)
+prisma/
+  schema.prisma       # DB schema (single source of truth)
+  migrations/         # Version-controlled DB changes
+generated/prisma/     # Generated Prisma client (git-ignored)
+types/                # Shared domain types + validation
+```

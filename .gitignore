@@ -40,3 +40,16 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .opencode
+
+# prisma generated client
+/generated/prisma
+
+# local teaching notes (not committed)
+/MISSION.md
+/NOTES.md
+/TEACHING-NOTES.md
+/learning-records/
+
+# skills
+/.agents/
+/skills-lock.json
