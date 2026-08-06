@@ -11,6 +11,7 @@ const nav = [
 export async function Header() {
   const session = await auth();
   const initial = session?.user?.name?.charAt(0).toUpperCase() ?? "U";
+  const isTeacher = session?.user?.role === "TEACHER";
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-surface/80 backdrop-blur-md">
@@ -37,6 +38,14 @@ export async function Header() {
         <div className="hidden items-center gap-6 sm:flex">
           {session?.user ? (
             <>
+              {isTeacher && (
+                <Link
+                  href="/admin"
+                  className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+                >
+                  Admin
+                </Link>
+              )}
               <span
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-soft text-sm font-semibold text-primary"
                 aria-label={`Signed in as ${session.user.name ?? "user"}`}
