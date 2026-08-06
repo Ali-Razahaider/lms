@@ -12,6 +12,13 @@ enum Role {
   TEACHER
 }
 
+enum VideoStatus {
+  NONE
+  UPLOADING
+  READY
+  ERROR
+}
+
 model User {
   id           String   @id @default(cuid())
   name         String
@@ -21,40 +28,58 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  courses       Course[]       @relation("CourseTeacher")
+  courses       Course[]        @relation("CourseTeacher")
   enrollments   Enrollment[]
+  reviews       Review[]
   lessonProgress LessonProgress[]
   quizAttempts  QuizAttempt[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+
+  courses Course[]
 }
 
 model Course {
   id          String   @id @default(cuid())
   title       String
   description String
+  price       Int      @default(0) // in cents; 0 means free
   published   Boolean  @default(false)
+  categoryId  String?
   teacherId   String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   teacher     User         @relation("CourseTeacher", fields: [teacherId], references: [id], onDelete: Cascade)
+  category    Category?    @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   lessons     Lesson[]
   enrollments Enrollment[]
+  reviews     Review[]
 
   @@index([teacherId])
+  @@index([categoryId])
 }
 
 model Lesson {
-  id        String   @id @default(cuid())
-  courseId  String
-  title     String
-  content   String
-  order     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String      @id @default(cuid())
+  courseId        String
+  title           String
+  content         String
+  videoStatus     VideoStatus @default(NONE)
+  videoUploadId   String? // Mux direct upload id (while transcoding)
+  videoPlaybackId String? // Mux playback id, once transcoded
+  order           Int
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 
-  course      Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  quiz        Quiz?
-  lessonProgress LessonProgress[]
+  course          Course             @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  quiz            Quiz?
+  lessonProgress  LessonProgress[]
 
   @@unique([courseId, order])
   @@index([courseId])
@@ -76,6 +101,22 @@ model Enrollment {
   userId    String
   courseId  String
   createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([courseId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId  String
+  rating    Int // 1-5 stars
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
