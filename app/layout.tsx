@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lume — Modern Learning",
+  title: "Canvas — Modern Learning",
   description: "A clean, modern learning management system.",
 };
 
@@ -34,7 +34,7 @@ export default function RootLayout({
         <main className="flex-1 bg-bg-subtle">{children}</main>
         <footer className="border-t border-border bg-surface py-8">
           <div className="mx-auto max-w-6xl px-4 text-center text-sm text-muted sm:px-6">
-            © {new Date().getFullYear()} Lume. Built for learning.
+            © {new Date().getFullYear()} Canvas. Built for learning.
           </div>
         </footer>
       </body>

@@ -2,6 +2,9 @@ import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { SignOutButton } from "@/components/sign-out-button";
 import { MobileMenu } from "@/components/mobile-menu";
+import { Caveat } from "next/font/google";
+
+const logoFont = Caveat({ subsets: ["latin"], weight: ["700"] });
 
 const nav = [
   { href: "/courses", label: "Courses" },
@@ -14,13 +17,12 @@ export async function Header() {
   const isTeacher = session?.user?.role === "TEACHER";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-surface/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/40 bg-surface/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" aria-label="Lume home" className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-semibold text-white">
-            L
+        <Link href="/" aria-label="Canvas home" className="flex items-center">
+          <span className={`text-3xl font-bold tracking-tighter text-foreground ${logoFont.className}`}>
+            Canvas.
           </span>
-          <span className="text-[17px] font-semibold tracking-tight">Lume</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 sm:flex">
@@ -46,19 +48,21 @@ export async function Header() {
                   Admin
                 </Link>
               )}
-              <span
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-soft text-sm font-semibold text-primary"
-                aria-label={`Signed in as ${session.user.name ?? "user"}`}
-              >
-                {initial}
-              </span>
               <Link
                 href="/dashboard"
                 className="text-sm font-medium text-muted transition-colors hover:text-foreground"
               >
                 Dashboard
               </Link>
-              <SignOutButton />
+              <div className="flex items-center gap-3 border-l border-border pl-6">
+                <span
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-soft text-sm font-semibold text-primary"
+                  aria-label={`Signed in as ${session.user.name ?? "user"}`}
+                >
+                  {initial}
+                </span>
+                <SignOutButton />
+              </div>
             </>
           ) : (
             <>
@@ -70,21 +74,21 @@ export async function Header() {
               </Link>
               <Link
                 href="/register"
-                className="inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary-hover"
+                className="inline-flex h-9 items-center justify-center rounded-full bg-foreground px-5 text-sm font-medium text-surface transition-colors hover:bg-foreground/90"
               >
-                Get started
+                Sign up
               </Link>
             </>
           )}
         </div>
 
-        <div className="flex items-center gap-2 sm:hidden">
+        <div className="flex items-center gap-4 sm:hidden">
           {!session?.user && (
             <Link
               href="/register"
-              className="inline-flex h-10 items-center rounded-lg bg-primary px-4 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary-hover"
+              className="inline-flex h-9 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-surface transition-colors hover:bg-foreground/90"
             >
-              Get started
+              Sign up
             </Link>
           )}
           <MobileMenu />
