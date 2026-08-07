@@ -60,7 +60,7 @@ export default async function Home() {
       {/* Hero */}
       <section className="mx-auto grid max-w-6xl gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-28">
         <div>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-balance sm:text-5xl lg:text-6xl">
+          <h1 className="hero-h1 text-balance">
             Learn at your own pace,{" "}
             <span className="text-primary">master your craft.</span>
           </h1>

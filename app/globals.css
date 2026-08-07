@@ -76,3 +76,20 @@ body {
 .animate-rise {
   animation: rise 0.5s ease-out both;
 }
+
+h1, h2, h3, .mona-heading {
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.hero-h1 {
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 640px) {
+  .hero-h1 {
+    font-size: 60px;
+  }
+}
