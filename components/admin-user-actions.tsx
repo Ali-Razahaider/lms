@@ -38,11 +38,6 @@ export function AdminUserActions({ userId, currentRole, isSelf }: Props) {
         <button
           type="submit"
           disabled={deletePending || isSelf}
-          onClick={(e) => {
-            if (!window.confirm("Delete this user? This removes their courses and progress permanently.")) {
-              e.preventDefault();
-            }
-          }}
           className="rounded-lg px-3 py-1.5 text-sm font-medium text-red-700 transition-colors hover:bg-red-50 disabled:opacity-50"
         >
           Delete

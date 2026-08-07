@@ -20,10 +20,10 @@ export default async function AdminOverviewPage() {
   ]);
 
   const statsCards = [
-    { label: "Total users", value: stats.userCount, href: "/admin/users" },
-    { label: "Students", value: stats.studentCount, href: "/admin/users" },
-    { label: "Courses", value: stats.courseCount, href: "/admin/courses" },
-    { label: "Published", value: stats.publishedCount, href: "/admin/courses" },
+    { label: "Total users", value: stats.userCount },
+    { label: "Students", value: stats.studentCount },
+    { label: "Courses", value: stats.courseCount },
+    { label: "Published", value: stats.publishedCount },
     { label: "Enrollments", value: stats.enrollmentCount },
     {
       label: "Revenue",
@@ -34,35 +34,34 @@ export default async function AdminOverviewPage() {
   ];
 
   return (
-    <div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {statsCards.map((stat, i) => {
-          const inner = (
-            <div
-              className="animate-rise rounded-2xl border border-border bg-surface p-5 shadow-sm transition-colors"
-              style={{ animationDelay: `${i * 40}ms` }}
-            >
-              <p className="text-sm font-medium text-muted">{stat.label}</p>
-              <p className="mt-1 text-3xl font-semibold tracking-tight">{stat.value}</p>
-              {stat.hint && <p className="mt-1 text-xs text-muted">{stat.hint}</p>}
-            </div>
-          );
-          return stat.href ? (
-            <Link key={stat.label} href={stat.href} className="block">
-              {inner}
-            </Link>
-          ) : (
-            <div key={stat.label}>{inner}</div>
-          );
-        })}
+    <div className="space-y-8">
+      {/* 1. Charts at the top */}
+      <div className="-mt-6">
+        <DashboardCharts
+          enrollmentSeries={stats.enrollmentSeries}
+          courseBars={stats.courseBars}
+          revenueBars={stats.revenueBars}
+          categorySlices={stats.categorySlices}
+        />
       </div>
 
-      <DashboardCharts
-        enrollmentSeries={stats.enrollmentSeries}
-        courseBars={stats.courseBars}
-        revenueBars={stats.revenueBars}
-        categorySlices={stats.categorySlices}
-      />
+      {/* 2. Stats grid below */}
+      <div>
+        <h2 className="mb-4 text-xl font-bold tracking-tight text-foreground">Quick Stats</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4">
+          {statsCards.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="group animate-rise rounded-[1.5rem] border border-border bg-surface p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+              style={{ animationDelay: `${i * 30}ms` }}
+            >
+              <p className="text-xs font-bold tracking-wider text-muted uppercase">{stat.label}</p>
+              <p className="mt-1 text-3xl font-black tracking-tighter text-foreground">{stat.value}</p>
+              {stat.hint && <p className="mt-1 text-xs font-medium text-muted/80">{stat.hint}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
