@@ -40,14 +40,6 @@ export async function Header() {
         <div className="hidden items-center gap-6 sm:flex">
           {session?.user ? (
             <>
-              {isTeacher && (
-                <Link
-                  href="/admin"
-                  className="text-sm font-medium text-muted transition-colors hover:text-foreground"
-                >
-                  Admin
-                </Link>
-              )}
               <Link
                 href="/dashboard"
                 className="text-sm font-medium text-muted transition-colors hover:text-foreground"

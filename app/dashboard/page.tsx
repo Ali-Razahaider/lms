@@ -79,12 +79,20 @@ export default async function DashboardPage() {
         {/* My courses */}
         <div className="mt-12 flex items-center justify-between">
           <h2 className="text-xl font-semibold tracking-tight">My courses</h2>
-          <Link
-            href="/dashboard/courses/new"
-            className="inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary-hover"
-          >
-            New course
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/admin"
+              className="inline-flex h-10 items-center rounded-lg border border-border bg-surface px-5 text-sm font-medium transition-colors hover:bg-black/5 hover:text-foreground"
+            >
+              Admin panel
+            </Link>
+            <Link
+              href="/dashboard/courses/new"
+              className="inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary-hover"
+            >
+              New course
+            </Link>
+          </div>
         </div>
 
         {courses.length === 0 ? (
