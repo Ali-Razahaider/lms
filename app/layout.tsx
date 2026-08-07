@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Onest } from "next/font/google";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import "./globals.css";
 
 const onest = Onest({
@@ -32,11 +33,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <Header />
         <main className="flex-1 bg-bg-subtle">{children}</main>
-        <footer className="border-t border-border bg-surface py-8">
-          <div className="mx-auto max-w-6xl px-4 text-center text-sm text-muted sm:px-6">
-            © {new Date().getFullYear()} Canvas. Built for learning.
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
