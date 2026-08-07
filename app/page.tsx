@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth } from "@/lib/auth";
+import LottieAnimation from "@/components/lottie-animation";
 
 const features = [
   {
@@ -59,10 +60,7 @@ export default async function Home() {
       {/* Hero */}
       <section className="mx-auto grid max-w-6xl gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-28">
         <div>
-          <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-primary">
-            Modern · Interactive · Built for you
-          </span>
-          <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight text-balance sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-balance sm:text-5xl lg:text-6xl">
             Learn at your own pace,{" "}
             <span className="text-primary">master your craft.</span>
           </h1>
@@ -86,38 +84,8 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="relative">
-          <div className="rounded-2xl border border-border bg-surface p-6 shadow-xl shadow-primary/5">
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
-                <span aria-hidden>📘</span>
-              </span>
-              <div>
-                <p className="font-semibold">React Foundations</p>
-                <p className="text-sm text-muted">Module 3 · Components</p>
-              </div>
-            </div>
-            <div className="mt-6">
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-medium">Lesson 14 of 24</span>
-                <span className="text-primary">58%</span>
-              </div>
-              <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-primary-soft">
-                <div className="h-full w-[58%] rounded-full bg-primary" />
-              </div>
-            </div>
-            <div className="mt-6 flex items-center gap-3 rounded-xl bg-primary-soft p-4">
-              <span className="text-primary">✓</span>
-              <p className="text-sm font-medium text-primary">
-                Great work — lesson complete!
-              </p>
-            </div>
-          </div>
-
-          <div className="absolute -bottom-6 -left-4 hidden rounded-2xl border border-border bg-surface p-4 shadow-lg sm:block">
-            <p className="text-xs font-medium text-muted">Quiz score</p>
-            <p className="text-2xl font-semibold text-primary">92%</p>
-          </div>
+        <div className="relative flex items-center justify-center">
+          <LottieAnimation />
         </div>
       </section>
 
