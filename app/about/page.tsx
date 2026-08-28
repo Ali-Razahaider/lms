@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { 
-  Users, 
+  Users,
   CheckCircle2, 
   BarChart3, 
-  Database,
-  ShieldCheck,
-  Play,
-  LayoutList
+  BookOpen,
+  Footprints,
+  TrendingUp,
+  Play
 } from "lucide-react";
 
 // --- Custom Illustrations (Homepage Style) ---
@@ -128,23 +128,23 @@ const AnalyticsIllustration = () => (
 
 const features = [
   {
-    title: "Multi-Role Architecture",
-    description: "Separate routing and powerful dashboards for students and educators.",
+    title: "Learn at your own pace",
+    description: "No fixed schedules or deadlines. Move through lessons when it suits you, and revisit anything whenever you like.",
     illustration: <RoleIllustration />,
   },
   {
-    title: "Streamed Playback",
-    description: "High-performance video encoding via Mux with HLS adaptive streaming.",
+    title: "Clear, focused lessons",
+    description: "Short, well-structured videos and readings that teach one idea at a time — no filler, no fluff.",
     illustration: <VideoIllustration />,
   },
   {
-    title: "Event-based Assessments",
-    description: "JSON-structured quiz attempts and stateful progress tracking.",
+    title: "Practice that sticks",
+    description: "Each lesson ends with a quick check for understanding, so new ideas actually settle in.",
     illustration: <QuizIllustration />,
   },
   {
-    title: "Analytic Aggregation",
-    description: "Progress completion tracking and structured course analytics.",
+    title: "Watch yourself grow",
+    description: "See your progress build lesson by lesson and stay motivated to keep going.",
     illustration: <AnalyticsIllustration />,
   },
 ];
@@ -168,7 +168,7 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           className="inline-flex items-center rounded-full bg-primary-soft px-4 py-1.5 text-sm font-semibold text-primary mb-6 border border-primary/10"
         >
-          About Lume
+          About Canvas
         </motion.span>
         
         <motion.h1 
@@ -177,7 +177,7 @@ export default function AboutPage() {
           transition={{ delay: 0.1 }}
           className="hero-h1 text-balance max-w-4xl text-foreground"
         >
-          Engineered for focused learning.
+          A calm place to learn.
         </motion.h1>
         
         <motion.p 
@@ -186,15 +186,15 @@ export default function AboutPage() {
           transition={{ delay: 0.2 }}
           className="mt-6 text-xl leading-relaxed text-muted max-w-2xl mx-auto"
         >
-          Lume is a meticulously designed Learning Management System. We combine high-performance architecture with thoughtful, distraction-free interfaces.
+          Canvas is built around one idea: learning should be clear, steady, and yours. We focus on well-made lessons, visible progress, and the small habits that make knowledge stick — nothing that gets in the way.
         </motion.p>
       </section>
 
       {/* Graphical Features Section (Like Homepage) */}
       <section className="px-6 py-16 max-w-6xl mx-auto border-t border-border/50">
         <div className="mb-12">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Core Capabilities</h2>
-          <p className="text-muted mt-2">Visually designed for clarity and speed.</p>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How Canvas helps you learn</h2>
+          <p className="text-muted mt-2">Small, deliberate supports that keep you moving forward.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -219,48 +219,42 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Minimal Architecture Section (Minimal Designs for Some Sections) */}
+      {/* Learning principles section */}
       <section className="px-6 py-24 max-w-6xl mx-auto border-t border-border/50">
         <div className="mb-16 max-w-2xl">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-4">System Architecture</h2>
-          <p className="text-muted text-lg">A clean, unidirectional data flow prioritizing type-safety and relational integrity.</p>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-4">Our approach to learning</h2>
+          <p className="text-muted text-lg">The habits that turn lessons into lasting understanding — and how Canvas quietly supports each one.</p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16 opacity-90">
-          <div className="flex flex-col w-full md:w-auto md:items-start">
-            <div className="text-[11px] font-mono text-muted mb-4 uppercase tracking-widest flex items-center gap-2">
-              <Database size={12} /> Storage
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="flex flex-col gap-4 p-6 rounded-3xl bg-bg-subtle border border-border/60">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
+              <BookOpen size={20} />
             </div>
-            <div className="border border-border bg-surface px-6 py-5 flex flex-col gap-1 w-full md:min-w-[180px] shadow-sm rounded-xl">
-              <span className="text-sm font-medium">PostgreSQL</span>
-              <span className="text-xs text-muted">Relational Engine</span>
-            </div>
+            <h3 className="text-lg font-semibold text-foreground">Learn by doing</h3>
+            <p className="text-muted leading-relaxed text-sm">
+              Watching isn&apos;t the same as knowing. Every lesson invites you to try it back — through a short check — before you move on.
+            </p>
           </div>
 
-          <div className="hidden md:block h-[1px] bg-border flex-1 mt-[52px]" />
-          <div className="block md:hidden w-[1px] h-8 bg-border" />
-
-          <div className="flex flex-col w-full md:w-auto md:items-start">
-            <div className="text-[11px] font-mono text-muted mb-4 uppercase tracking-widest flex items-center gap-2">
-              <ShieldCheck size={12} /> Data Access
+          <div className="flex flex-col gap-4 p-6 rounded-3xl bg-bg-subtle border border-border/60">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
+              <Footprints size={20} />
             </div>
-            <div className="border border-border bg-surface px-6 py-5 flex flex-col gap-1 w-full md:min-w-[180px] shadow-sm rounded-xl">
-              <span className="text-sm font-medium">Prisma ORM</span>
-              <span className="text-xs text-muted">Type-safe queries</span>
-            </div>
+            <h3 className="text-lg font-semibold text-foreground">Small steps win</h3>
+            <p className="text-muted leading-relaxed text-sm">
+              One clear idea at a time beats cramming. Lessons are ordered so each builds on the last, and you always know what&apos;s next.
+            </p>
           </div>
 
-          <div className="hidden md:block h-[1px] bg-border flex-1 mt-[52px]" />
-          <div className="block md:hidden w-[1px] h-8 bg-border" />
-
-          <div className="flex flex-col w-full md:w-auto md:items-start">
-            <div className="text-[11px] font-mono text-muted mb-4 uppercase tracking-widest flex items-center gap-2">
-              <LayoutList size={12} /> Application
+          <div className="flex flex-col gap-4 p-6 rounded-3xl bg-bg-subtle border border-border/60">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
+              <TrendingUp size={20} />
             </div>
-            <div className="border border-border bg-surface px-6 py-5 flex flex-col gap-1 w-full md:min-w-[180px] shadow-sm rounded-xl">
-              <span className="text-sm font-medium">Next.js Router</span>
-              <span className="text-xs text-muted">Server Components</span>
-            </div>
+            <h3 className="text-lg font-semibold text-foreground">Progress you can see</h3>
+            <p className="text-muted leading-relaxed text-sm">
+              A visible path keeps motivation alive. Watch completion add up lesson by lesson and pick up exactly where you left off.
+            </p>
           </div>
         </div>
       </section>
@@ -268,9 +262,9 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="px-6 py-24 bg-surface border-t border-border">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">Ready to start exploring?</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-6">Ready to start learning?</h2>
           <p className="text-lg text-muted mb-10 max-w-2xl mx-auto">
-            Experience the platform firsthand. Browse our catalog of courses, track your progress, and join the learning revolution.
+            Browse our catalog of courses, follow a clear path, and build real skills at your own pace.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link 
