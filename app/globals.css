@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -22,7 +23,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-soft: var(--primary-soft);
-  --font-sans: var(--font-onest);
+  --font-sans: "Mona Sans", "Helvetica Neue", Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -45,7 +46,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* Visible, accessible focus ring for keyboard users */
@@ -91,5 +92,11 @@ h1, h2, h3, .mona-heading {
 @media (min-width: 640px) {
   .hero-h1 {
     font-size: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-h1 {
+    font-size: 72px;
   }
 }
